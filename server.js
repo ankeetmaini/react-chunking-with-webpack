@@ -13,7 +13,7 @@ app.use(express.static(OUTPUT_PATH));
 compiler.watch({
   aggregateTimeout: 300,
   poll: true,
-}, err => console.error('Error: ', err));
+}, (err) => err && console.error('Error: ', err));
 
 app.get('*', (req, res) => {
   // handle annoying favicon.ico requests

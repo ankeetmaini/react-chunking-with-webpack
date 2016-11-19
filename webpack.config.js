@@ -1,10 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const dependencies = require('./package.json').dependencies;
-const exec = require('child_process').exec;
 const webpack = require('webpack');
-
-// clean the `dist` folder
-exec('rm -rf dist/*');
 
 module.exports = {
   entry: {
@@ -26,6 +23,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'React Webpack Code Splitting',
       templateContent: '<html><head></head><body><div id="app"></div></body></html>'
-    })
-  ]
+    }),
+    new CleanWebpackPlugin(['dist']),
+  ],
+  devtool: 'source-map'
 }
